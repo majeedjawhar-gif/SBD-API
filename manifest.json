@@ -1,0 +1,11 @@
+{
+  "title": "Trimble Connect API Test Workbench",
+  "url": "https://YOUR_HOSTED_DOMAIN/index.html",
+  "icon": "https://YOUR_HOSTED_DOMAIN/image.svg",
+  "description": "Professional diagnostics for Trimble Connect Workspace API and cloud REST services.",
+  "configCommand": "open_api_test_workbench",
+  "extensionType": [
+    "project"
+  ],
+  "enabled": true
+}

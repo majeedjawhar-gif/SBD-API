@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Professional diagnostic workspace for testing Trimble Connect Workspace and cloud API integrations.">
+  <meta name="theme-color" content="#173d35">
+  <title>Trimble Connect API Test Workbench</title>
+  <link rel="icon" type="image/svg+xml" href="./image.svg">
+  <style>
+    :root{color-scheme:light;--ink:#172b28;--muted:#61716d;--line:#dce5e1;--canvas:#f4f7f6;--panel:#fff;--brand:#176b55;--brand-dark:#124c40;--soft:#e9f4ef;--amber:#8a5a0a;--amber-bg:#fff5df;--red:#a32929;--red-bg:#fff0f0;--shadow:0 8px 24px rgba(22,48,41,.06)}
+    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button,input,select,textarea{font:inherit}button{cursor:pointer}.topbar{background:#173d35;color:#fff;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:12px}.brand img{width:38px;height:38px}.brand h1{font-size:18px;line-height:1.2;margin:0;font-weight:750;letter-spacing:-.02em}.brand p{margin:4px 0 0;color:#c9ddd6;font-size:12px}.top-actions{display:flex;align-items:center;gap:8px}.status{border:1px solid #73978c;border-radius:999px;padding:6px 10px;font-size:12px;color:#e0f3eb}.layout{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:calc(100vh - 76px)}aside{background:#fff;border-right:1px solid var(--line);padding:18px 12px}.nav-label{padding:8px 12px;color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.nav-item{display:flex;width:100%;text-align:left;gap:10px;align-items:center;border:0;background:transparent;color:#40534e;padding:10px 12px;border-radius:8px;margin:2px 0}.nav-item:hover{background:#f3f7f5}.nav-item.active{background:var(--soft);color:var(--brand-dark);font-weight:700}.nav-item .num{font-size:10px;color:#778781;margin-left:auto}.side-note{margin:20px 8px 0;padding:12px;border-radius:9px;background:#f6f8f7;color:var(--muted);font-size:11px}.main{padding:26px;max-width:1400px;width:100%;margin:0 auto}.page-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--brand);font-weight:800}.page-head h2{font-size:26px;letter-spacing:-.035em;margin:4px 0}.page-head p{color:var(--muted);margin:4px 0 0;max-width:760px}.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px}.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}.card h3{margin:0;font-size:15px;letter-spacing:-.01em}.sub{font-size:12px;color:var(--muted);margin-top:4px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.metric{padding:15px;border:1px solid var(--line);border-radius:10px;background:#fff}.metric .label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}.metric .value{font-size:20px;font-weight:750;margin-top:5px;overflow-wrap:anywhere}.metric .hint{font-size:11px;color:var(--muted);margin-top:3px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;min-width:0}.field label{font-size:12px;font-weight:700;color:#40534e}.field input,.field select,.field textarea{width:100%;border:1px solid #cbd8d2;border-radius:8px;background:#fff;padding:9px 10px;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(23,107,85,.1)}.field textarea{min-height:120px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;resize:vertical}.inline-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:1px solid #cbd8d2;border-radius:8px;padding:9px 13px;background:#fff;color:#243d36;font-weight:700;font-size:12px}.btn:hover{background:#f4f8f6}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand-dark)}.btn.danger{color:var(--red);border-color:#e8bdbd}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 8px;background:#eef2f0;color:#52635d;font-size:10px;font-weight:800}.pill.ok{background:#e4f5eb;color:#176341}.pill.warn{background:var(--amber-bg);color:var(--amber)}.pill.error{background:var(--red-bg);color:var(--red)}.notice{padding:12px 14px;border-radius:9px;background:var(--amber-bg);color:#6e4a0a;font-size:12px;margin-bottom:14px}.notice.info{background:#edf5fb;color:#285b7b}.notice.error{background:var(--red-bg);color:var(--red)}.output{background:#101c1a;color:#dcebe5;border-radius:9px;padding:14px;min-height:110px;max-height:420px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}.output.empty{color:#94aaa1}.api-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.api-card{border:1px solid var(--line);border-radius:10px;padding:13px;display:flex;flex-direction:column;gap:8px}.api-card strong{font-size:13px}.api-card p{font-size:11px;color:var(--muted);margin:0;flex:1}.api-card a{font-size:11px;color:var(--brand);text-decoration:none;font-weight:700}.api-card a:hover{text-decoration:underline}.hidden{display:none!important}.small{font-size:11px;color:var(--muted)}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f0f4f2;border-radius:4px;padding:2px 4px}.footer{padding:10px 0 20px;color:var(--muted);font-size:11px}.log-row{padding:9px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}.log-row:last-child{border-bottom:0}.log-time{color:var(--muted);font-size:10px;white-space:nowrap}.log-message{font-size:12px;overflow-wrap:anywhere}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:8px;display:flex;overflow:auto;gap:4px}.nav-label,.side-note{display:none}.nav-item{white-space:nowrap;width:auto}.main{padding:18px}.grid.three{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.main{padding:13px}.grid,.grid.three,.inline-fields,.api-list{grid-template-columns:1fr}.page-head{display:block}.page-head .btn-row{margin-top:12px}.topbar{padding:14px}.top-actions{width:100%;justify-content:space-between}.card{padding:14px}}
+  </style>
+</head>
+<body>
+  <div id="startupDiagnostic" role="status" style="display:block;padding:8px 16px;background:#fff5df;color:#6e4a0a;border-bottom:1px solid #ead7a8;font-size:12px">
+    Starting application interface… If this message remains, check the browser console for JavaScript errors.
+  </div>
+  <header class="topbar">
+    <div class="brand"><img src="./image.svg" alt=""><div><h1>Trimble Connect API Test Workbench</h1><p>Integration diagnostics · Workspace and cloud services</p></div></div>
+    <div class="top-actions"><span class="status" id="connectionBadge">Workspace: not connected</span><button class="btn" id="connectBtn">Connect workspace</button></div>
+  </header>
+  <div class="layout">
+    <aside>
+      <div class="nav-label">Workbench</div>
+      <button class="nav-item active" data-page="overview">◈ Overview <span class="num">00</span></button>
+      <button class="nav-item" data-page="workspace">⌘ Workspace API <span class="num">01</span></button>
+      <button class="nav-item" data-page="rest">⇄ REST API tester <span class="num">02</span></button>
+      <button class="nav-item" data-page="auth">♙ Authentication <span class="num">03</span></button>
+      <button class="nav-item" data-page="catalog">▤ API catalogue <span class="num">10</span></button>
+      <button class="nav-item" data-page="activity">◷ Activity log <span class="num">04</span></button>
+      <div class="side-note">Use a test project and read-only requests first. Write operations can change real project data.</div>
+    </aside>
+    <main class="main">
+      <section class="page" id="page-overview">
+        <div class="page-head"><div><div class="eyebrow">Developer tools / Overview</div><h2>Integration overview</h2><p>Validate the embedded Workspace API and send controlled requests to documented Trimble Connect cloud API endpoints.</p></div><span class="pill" id="runtimePill">Browser runtime</span></div>
+        <div class="notice info"><strong>Important:</strong> This is a diagnostic harness, not an official Trimble product. Workspace API calls require the app to be loaded as a Trimble Connect extension. REST requests require valid authorization, the correct regional base URL and documented endpoint paths.</div>
+        <div class="grid three">
+          <div class="metric"><div class="label">Workspace API</div><div class="value" id="workspaceMetric">Not connected</div><div class="hint">Embedded extension context</div></div>
+          <div class="metric"><div class="label">Current project</div><div class="value" id="projectMetric">Not loaded</div><div class="hint" id="projectIdMetric">Project ID unavailable</div></div>
+          <div class="metric"><div class="label">REST requests</div><div class="value" id="requestMetric">0</div><div class="hint">Requests made in this session</div></div>
+        </div>
+        <div class="card"><div class="card-head"><div><h3>Quick actions</h3><div class="sub">Start with the embedded workspace, then configure a cloud API request.</div></div></div><div class="btn-row"><button class="btn primary" id="quickConnect">Connect to Trimble Connect</button><button class="btn" id="quickProject">Get current project</button><button class="btn" id="quickUser">Get user settings</button><button class="btn" id="quickRest">Open REST API tester</button></div><div class="small" style="margin-top:12px">Recommended: verify the workspace connection and project context before attempting authenticated REST calls.</div></div>
+        <div class="card"><div class="card-head"><div><h3>API coverage</h3><div class="sub">Services available for manual testing from this workbench.</div></div></div><div class="api-list" id="overviewApiList"></div></div>
+      </section>
+
+      <section class="page hidden" id="page-workspace">
+        <div class="page-head"><div><div class="eyebrow">Embedded integration</div><h2>Workspace API diagnostics</h2><p>Call supported Workspace API methods through the Trimble Connect host application.</p></div><span class="pill" id="workspaceState">Not connected</span></div>
+        <div class="notice">This panel uses the official Workspace API browser library. It is intended to run inside Trimble Connect. Opening index.html directly may not provide the parent-frame API context.</div>
+        <div class="card"><div class="card-head"><div><h3>Connection</h3><div class="sub">Initializes the Workspace API bridge and listens for host events.</div></div></div><div class="btn-row"><button class="btn primary" id="workspaceConnect">Connect / reconnect</button><button class="btn" id="workspaceProject">Get project</button><button class="btn" id="workspaceCurrentProject">Get current project (legacy)</button><button class="btn" id="workspaceSettings">Get user settings</button><button class="btn" id="workspaceMembers">Get project members</button><button class="btn" id="workspaceToken">Request access-token permission</button></div><div class="small" style="margin-top:10px">Token permission requires user consent. The token is never saved to local storage by this app.</div></div>
+        <div class="card"><div class="card-head"><div><h3>Workspace response</h3><div class="sub">Latest result or error from a Workspace API operation.</div></div><button class="btn" id="clearWorkspaceOutput">Clear output</button></div><pre class="output empty" id="workspaceOutput">No workspace call has been made.</pre></div>
+        <div class="card"><div class="card-head"><div><h3>Host events</h3><div class="sub">Events delivered by the Trimble Connect host after connection.</div></div></div><pre class="output empty" id="eventOutput">No host events received.</pre></div>
+      </section>
+
+      <section class="page hidden" id="page-rest">
+        <div class="page-head"><div><div class="eyebrow">Cloud services</div><h2>REST API request tester</h2><p>Configure an API host, resource path, HTTP method and optional JSON body. The tool displays status, timing and response data.</p></div><span class="pill">Manual endpoint mode</span></div>
+        <div class="notice"><strong>Security:</strong> Do not paste a client secret here. Access tokens are held in page memory only and cleared when the page reloads. Browser CORS restrictions may block some cloud requests; use a secured backend proxy when required.</div>
+        <div class="card">
+          <div class="inline-fields">
+            <div class="field"><label for="apiFamily">API service</label><select id="apiFamily">
+              <option value="core">Core API</option><option value="regions">Regions API</option><option value="account">Core Account API</option><option value="model">Model API</option><option value="modelFeature">Model Feature API</option><option value="organizer">Organizer API</option><option value="propertySet">Property Set API</option><option value="topics">Topics API</option><option value="custom">Custom service / endpoint</option>
+            </select></div>
+            <div class="field"><label for="httpMethod">HTTP method</label><select id="httpMethod"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option><option>OPTIONS</option></select></div>
+          </div>
+          <div class="field"><label for="baseUrl">Service base URL</label><input id="baseUrl" placeholder="Enter the official base URL for the selected API"></div>
+          <div class="field"><label for="endpointPath">Endpoint path</label><input id="endpointPath" placeholder="/documented/resource/path"><div class="small">Enter the exact path from the selected API's current OpenAPI definition. Include query parameters in this field if needed.</div></div>
+          <div class="field"><label for="accessToken">Bearer access token</label><input id="accessToken" type="password" autocomplete="off" placeholder="Paste a short-lived access token (optional for public endpoints)"></div>
+          <div class="field"><label for="requestBody">Request body (JSON)</label><textarea id="requestBody" spellcheck="false" placeholder='{"example":"Replace with the documented request schema"}'></textarea></div>
+          <div class="btn-row"><button class="btn primary" id="sendRequest">Send request</button><button class="btn" id="loadRegionsPreset">Load Regions example</button><button class="btn" id="loadCorePreset">Load Core v2 template</button><button class="btn" id="clearRest">Clear fields</button></div>
+        </div>
+        <div class="card"><div class="card-head"><div><h3>Response</h3><div class="sub" id="responseMeta">No request sent.</div></div><button class="btn" id="copyResponse">Copy response</button></div><pre class="output empty" id="restOutput">The response will appear here.</pre></div>
+      </section>
+
+      <section class="page hidden" id="page-auth">
+        <div class="page-head"><div><div class="eyebrow">Identity and access</div><h2>Authentication guidance</h2><p>Use the authentication pattern that matches the app type you registered in the Trimble Developer Console.</p></div></div>
+        <div class="notice info"><strong>Extension App vs End-User App:</strong> Extensions run inside Trimble Connect and use the Workspace API's permission flow for the host-managed access token. Standalone cloud integrations use the configured OAuth flow and service-specific credentials.</div>
+        <div class="grid">
+          <div class="card"><h3>Workspace extension</h3><p class="sub">Recommended for in-Connect testing.</p><ol><li>Register an Extension App in the Developer Console.</li><li>Host this application over HTTPS.</li><li>Add the extension manifest URL in the appropriate Trimble Connect project settings.</li><li>Connect through <span class="code">TrimbleConnectWorkspace.connect(window.parent, callback)</span>.</li><li>Request token permission only when required and approved.</li></ol></div>
+          <div class="card"><h3>Standalone REST integration</h3><p class="sub">For external applications and backend services.</p><ol><li>Register the appropriate End-User App or integration.</li><li>Configure redirect URI, scopes and OAuth flow.</li><li>Keep client secrets on a trusted server.</li><li>Use a valid access token for the target service and region.</li><li>Check permissions, expiry, status codes and audit logs.</li></ol></div>
+        </div>
+        <div class="card"><h3>Security checklist</h3><div id="securityChecklist"></div></div>
+        <div class="card"><h3>Official authentication references</h3><p><a href="https://developer.trimble.com/docs/authentication/guides/initial-api-transaction/" target="_blank" rel="noopener">Initial API transaction</a></p><p><a href="https://developer.trimble.com/docs/connect/guides/extend/" target="_blank" rel="noopener">Extend Trimble Connect</a></p><p><a href="https://components.connect.trimble.com/trimble-connect-workspace-api/index.html" target="_blank" rel="noopener">Workspace API reference</a></p></div>
+      </section>
+
+      <section class="page hidden" id="page-catalog">
+        <div class="page-head"><div><div class="eyebrow">Reference library</div><h2>API catalogue</h2><p>Choose a service, open its official documentation and test a documented operation in the REST tester where applicable.</p></div></div>
+        <div class="notice info">The catalogue covers all services shown in the supplied reference image. A generic request tester is provided for services whose individual endpoint schemas must be selected from the current official specification.</div>
+        <div class="api-list" id="fullApiList"></div>
+      </section>
+
+      <section class="page hidden" id="page-activity">
+        <div class="page-head"><div><div class="eyebrow">Diagnostics</div><h2>Activity log</h2><p>Local session log of connection attempts, Workspace API calls and REST requests.</p></div><button class="btn danger" id="clearLog">Clear log</button></div>
+        <div class="card"><div id="activityList"><div class="small">No activity recorded.</div></div></div>
+      </section>
+      <div class="footer">Trimble Connect API Test Workbench · Independent developer utility · Use official API specifications as the source of truth for endpoints and payloads.</div>
+    </main>
+  </div>
+<script>
+  // Visible diagnostics if the app script or Workspace API library fails.
+  window.addEventListener("error", function (event) {
+    var box = document.getElementById("startupDiagnostic");
+    if (box) {
+      box.style.display = "block";
+      box.style.background = "#fff0f0";
+      box.style.color = "#a32929";
+      box.textContent = "JavaScript error: " + (event.message || "Unknown error") +
+        (event.filename ? " · " + event.filename.split("/").pop() : "") +
+        (event.lineno ? " · line " + event.lineno : "");
+    }
+  });
+  window.addEventListener("unhandledrejection", function (event) {
+    var box = document.getElementById("startupDiagnostic");
+    if (box) {
+      box.style.display = "block";
+      box.style.background = "#fff0f0";
+      box.style.color = "#a32929";
+      box.textContent = "Unhandled asynchronous error: " +
+        (event.reason && event.reason.message ? event.reason.message : String(event.reason));
+    }
+  });
+</script>
+<script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"
+        onerror="document.getElementById('startupDiagnostic').textContent='Workspace API library failed to load. Check network access, CSP and the browser console.'"></script>
+<script>
+(() => {
+  "use strict";
+  const startupBox = document.getElementById("startupDiagnostic");
+  if (startupBox) {
+    startupBox.style.background = "#e4f5eb";
+    startupBox.style.color = "#176341";
+    startupBox.textContent = "Application interface loaded. Connect to Trimble Connect to initialize the Workspace API.";
+    window.setTimeout(() => { startupBox.style.display = "none"; }, 7000);
+  }
+  const docs = {
+    workspace:{name:"Workspace API",purpose:"Embedded extension bridge, project context, user settings, extension permissions and host events.",url:"https://developer.trimble.com/docs/connect/tools/api/workspace/",mode:"workspace"},
+    core:{name:"Core API",purpose:"Project resources such as files, folders, views, ToDos and other common data.",url:"https://developer.trimble.com/docs/connect/tools/api/core",mode:"rest"},
+    regions:{name:"Regions API",purpose:"Discover regional service endpoints for project data.",url:"https://developer.trimble.com/docs/connect/guides/integrate/latest",mode:"rest"},
+    account:{name:"Core Account API",purpose:"Account-level projects, users and project membership. Administrative permissions may be required.",url:"https://developer.trimble.com/docs/connect/tools/api/core-account/",mode:"rest"},
+    model:{name:"Model API",purpose:"Query BIM model metadata, hierarchies, entities and properties.",url:"https://developer.trimble.com/docs/connect/tools/api/model/",mode:"rest"},
+    modelFeature:{name:"Model Feature API",purpose:"Read manual and rule-based Organizer groups for model grouping workflows.",url:"https://developer.trimble.com/docs/connect/tools/api/model-feature/",mode:"rest"},
+    organizer:{name:"Organizer API",purpose:"Create and manage hierarchical trees, nodes and links with access control.",url:"https://developer.trimble.com/docs/connect/tools/api/organizer",mode:"rest"},
+    propertySet:{name:"Property Set API",purpose:"Define property set libraries and attach custom properties to model objects.",url:"https://developer.trimble.com/docs/connect/tools/api/property-set/",mode:"rest"},
+    topics:{name:"Topics API",purpose:"Manage BCF-compatible issues, comments, viewpoints and model object links.",url:"https://developer.trimble.com/docs/connect/tools/api/topics/",mode:"rest"},
+    identity:{name:"Trimble Identity",purpose:"OAuth authentication and access-token lifecycle.",url:"https://developer.trimble.com/docs/authentication/guides/initial-api-transaction/",mode:"auth"}
+  };
+  const state={API:null,connected:false,accessToken:null,requestCount:0,logs:[],lastResponse:""};
+  const $=id=>document.getElementById(id);
+  const stamp=()=>new Date().toLocaleTimeString();
+  function log(type,message){state.logs.unshift({time:stamp(),type,message:String(message)});state.logs=state.logs.slice(0,100);renderLog();}
+  function pretty(value){try{return JSON.stringify(value,null,2)}catch{return String(value)}}
+  function showOutput(id,value,isError=false){const el=$(id);el.textContent=typeof value==="string"?value:pretty(value);el.classList.toggle("empty",!value);if(isError)el.style.border="1px solid #a32929";else el.style.border="";}
+  function setConnected(ok){state.connected=ok;$("connectionBadge").textContent="Workspace: "+(ok?"connected":"not connected");$("connectionBadge").style.borderColor=ok?"#8ac8a8":"#73978c";$("workspaceState").textContent=ok?"Connected":"Not connected";$("workspaceState").className="pill "+(ok?"ok":"warn");$("workspaceMetric").textContent=ok?"Connected":"Not connected";}
+  function setPage(name){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===name));}
+  document.querySelectorAll(".nav-item").forEach(b=>b.addEventListener("click",()=>setPage(b.dataset.page)));
+  function renderCards(target,keys){$(target).innerHTML=keys.map(key=>{const d=docs[key];return `<div class="api-card"><strong>${d.name}</strong><p>${d.purpose}</p><a href="${d.url}" target="_blank" rel="noopener">Official documentation ↗</a><div class="btn-row"><button class="btn" data-test-api="${key}">Test this API</button></div></div>`}).join("");}
+  renderCards("overviewApiList",["workspace","core","regions","account","model","modelFeature","organizer","propertySet","topics","identity"]);
+  renderCards("fullApiList",["workspace","core","regions","account","model","modelFeature","organizer","propertySet","topics","identity"]);
+  document.addEventListener("click",e=>{const b=e.target.closest("[data-test-api]");if(!b)return;const key=b.dataset.testApi;if(key==="workspace"){setPage("workspace");return}if(key==="identity"){setPage("auth");return}setPage("rest");$("apiFamily").value=key;configureFamily();});
+  $("securityChecklist").innerHTML=["Use HTTPS for hosted extensions and OAuth callbacks.","Never expose client secrets in browser code.","Request only the scopes and permissions the app requires.","Do not persist access tokens in localStorage or sessionStorage.","Validate the user, project and operation permissions on the server.","Treat write and delete operations as potentially destructive."].map(x=>`<div class="log-row"><span class="pill ok">Check</span><span class="log-message">${x}</span></div>`).join("");
+  async function connectWorkspace(){
+    try{
+      if(!window.TrimbleConnectWorkspace||typeof window.TrimbleConnectWorkspace.connect!=="function"){
+        setConnected(false);throw new Error("Workspace API library is unavailable. Open this page as an extension inside Trimble Connect and verify the script can load.");
+      }
+      const api=await window.TrimbleConnectWorkspace.connect(window.parent,(event,data)=>{
+        const current=$("eventOutput").textContent;
+        showOutput("eventOutput",`${stamp()} · ${event}\n${pretty(data)}\n\n${current==="No host events received."?"":current}`);log("HOST EVENT",`${event}: ${pretty(data)}`);
+        if(event==="extension.accessToken"&&data){const token=typeof data==="string"?data:(data.accessToken||data.token);if(token){state.accessToken=token;$("accessToken").value=token;log("AUTH","Access token received in memory from host event.");}}
+      });
+      state.API=api;setConnected(true);log("WORKSPACE","Workspace API connected.");showOutput("workspaceOutput",{status:"connected",availableMethods:Object.keys(api||{}),message:"Workspace API bridge initialized."});return api;
+    }catch(error){setConnected(false);showOutput("workspaceOutput",error.message,true);log("ERROR",error.message);return null;}
+  }
+  async function callWorkspace(label,fn){try{const api=state.API||await connectWorkspace();if(!api)return;const result=await fn(api);showOutput("workspaceOutput",{operation:label,result});log("WORKSPACE",label+" completed.");if(label.toLowerCase().includes("project")){const p=result||{};$("projectMetric").textContent=p.name||"Loaded";$("projectIdMetric").textContent=p.id||"Project ID not returned";}}catch(error){showOutput("workspaceOutput",{operation:label,error:error.message},true);log("ERROR",label+": "+error.message);}}
+  $("connectBtn").onclick=connectWorkspace;$("quickConnect").onclick=connectWorkspace;$("workspaceConnect").onclick=connectWorkspace;
+  $("quickProject").onclick=()=>callWorkspace("Get project",api=>typeof api.project.getProject==="function"?api.project.getProject():api.project.getCurrentProject());
+  $("workspaceProject").onclick=$("quickProject").onclick;
+  $("workspaceCurrentProject").onclick=()=>callWorkspace("Get current project (legacy)",api=>api.project.getCurrentProject());
+  $("quickUser").onclick=()=>{setPage("workspace");return callWorkspace("Get user settings",api=>api.user.getUserSettings())};
+  $("workspaceSettings").onclick=()=>callWorkspace("Get user settings",api=>api.user.getUserSettings());
+  $("workspaceMembers").onclick=()=>callWorkspace("Get project members",api=>api.project.getMembers());
+  $("workspaceToken").onclick=()=>callWorkspace("Request access-token permission",async api=>{const result=await api.extension.requestPermission("accesstoken");if(typeof result==="string"&&result!=="pending")state.accessToken=result;return result;});
+  $("clearWorkspaceOutput").onclick=()=>showOutput("workspaceOutput","Output cleared.");
+  $("quickRest").onclick=()=>setPage("rest");
+  const defaults={
+    core:{base:"",path:"",method:"GET"},
+    regions:{base:"https://us-east.api.trimble.com/connect/v2",path:"/regions",method:"GET"},
+    account:{base:"https://ecom.connect.trimble.com/v1",path:"/accounts/{accountId}/projects?size=25&page=1",method:"GET"},
+    model:{base:"",path:"",method:"GET"},
+    modelFeature:{base:"",path:"",method:"GET"},
+    organizer:{base:"",path:"",method:"GET"},
+    propertySet:{base:"",path:"",method:"GET"},
+    topics:{base:"",path:"",method:"GET"},
+    custom:{base:"",path:"",method:"GET"}
+  };
+  function configureFamily(){const key=$("apiFamily").value;const d=defaults[key]||defaults.custom;$("baseUrl").value=d.base;$("endpointPath").value=d.path;$("httpMethod").value=d.method;$("requestBody").value="";if(key==="account")$("endpointPath").placeholder="Replace {accountId} with a real account ID";else $("endpointPath").placeholder="Enter the exact documented endpoint path";}
+  $("apiFamily").addEventListener("change",configureFamily);
+  $("loadRegionsPreset").onclick=()=>{$("apiFamily").value="regions";configureFamily();};
+  $("loadCorePreset").onclick=()=>{$("apiFamily").value="core";configureFamily();$("baseUrl").value="";$("endpointPath").value="";log("INFO","Core API v2 template loaded. Enter the current documented regional base URL and endpoint path.");};
+  $("clearRest").onclick=()=>{$("baseUrl").value="";$("endpointPath").value="";$("accessToken").value="";$("requestBody").value="";showOutput("restOutput","The response will appear here.");$("responseMeta").textContent="No request sent.";};
+  $("sendRequest").onclick=async()=>{
+    const base=$("baseUrl").value.trim().replace(/\/+$/,""),path=$("endpointPath").value.trim(),method=$("httpMethod").value,token=$("accessToken").value.trim(),rawBody=$("requestBody").value.trim();
+    if(!base||!path){showOutput("restOutput","Enter a service base URL and exact documented endpoint path.",true);return;}
+    if(!/^https:\/\/[^ ]+/i.test(base)){showOutput("restOutput","For security, the service base URL must use HTTPS.",true);return;}
+    let body;
+    if(rawBody&&["GET","HEAD"].includes(method)){showOutput("restOutput","GET and HEAD requests cannot send a JSON body in this workbench. Clear the body or select a supported write method.",true);return;}
+    if(rawBody){try{body=JSON.parse(rawBody)}catch{showOutput("restOutput","Request body is not valid JSON.",true);return;}}
+    let url;
+    try{url=new URL(path,base+"/");if(url.origin!==new URL(base).origin)throw new Error("Endpoint URL must remain on the configured service origin.");}catch(error){showOutput("restOutput",error.message,true);return;}
+    const headers={Accept:"application/json"};if(token)headers.Authorization="Bearer "+token;if(body!==undefined)headers["Content-Type"]="application/json";
+    const started=performance.now();$("sendRequest").disabled=true;$("sendRequest").textContent="Sending…";
+    try{
+      const response=await fetch(url.toString(),{method,headers,...(body!==undefined?{body:JSON.stringify(body)}:{})});
+      const text=await response.text();let result=text;try{result=text?JSON.parse(text):null}catch{}
+      const elapsed=Math.round(performance.now()-started);state.requestCount++;$("requestMetric").textContent=state.requestCount;
+      $("responseMeta").textContent=`${response.status} ${response.statusText} · ${elapsed} ms · ${method} ${url.toString()}`;
+      state.lastResponse=pretty(result);showOutput("restOutput",{status:response.status,statusText:response.statusText,elapsedMs:elapsed,url:url.toString(),response:result},!response.ok);
+      log(response.ok?"REST "+response.status:"REST ERROR "+response.status,`${method} ${url.toString()} · ${elapsed} ms`);
+    }catch(error){
+      const message=error instanceof TypeError?"Network/CORS error. Confirm the endpoint, token, region and browser CORS policy. If direct browser access is blocked, call the API from a secured backend proxy. "+error.message:error.message;
+      $("responseMeta").textContent="Request failed";showOutput("restOutput",{error:message},true);log("REST ERROR",message);
+    }finally{$("sendRequest").disabled=false;$("sendRequest").textContent="Send request";}
+  };
+  $("copyResponse").onclick=async()=>{try{await navigator.clipboard.writeText($("restOutput").textContent);log("INFO","Response copied to clipboard.");}catch{log("ERROR","Clipboard access is unavailable in this context.");}};
+  function renderLog(){$("activityList").innerHTML=state.logs.length?state.logs.map(x=>`<div class="log-row"><span class="log-time">${x.time}</span><span class="pill ${x.type.includes("ERROR")?"error":x.type.includes("REST 2")?"ok":""}">${x.type}</span><span class="log-message">${escapeHtml(x.message)}</span></div>`).join(""):'<div class="small">No activity recorded.</div>';}
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  $("clearLog").onclick=()=>{state.logs=[];renderLog();};
+  if(window.parent!==window){$("runtimePill").textContent="Embedded frame detected";log("INFO","Embedded frame detected. Use Connect workspace to initialize the bridge.");}
+  else{log("INFO","Standalone browser context detected. Workspace API methods require the page to be hosted and loaded as a Trimble Connect extension.");}
+})();
+</script>
+</body>
+</html>
