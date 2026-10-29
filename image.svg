@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Trimble Connect API Test Workbench</title>
+  <desc id="desc">A geometric forest-green application icon with connected nodes and a diagnostic check.</desc>
+  <rect width="128" height="128" rx="26" fill="#173d35"/>
+  <path d="M28 37h44M28 37v54M28 91h44M72 37v54" fill="none" stroke="#a9d6c3" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="28" cy="37" r="9" fill="#fff"/>
+  <circle cx="72" cy="37" r="9" fill="#fff"/>
+  <circle cx="28" cy="91" r="9" fill="#fff"/>
+  <circle cx="72" cy="91" r="9" fill="#fff"/>
+  <circle cx="94" cy="64" r="23" fill="#e5f5ec"/>
+  <path d="m82 64 8 8 16-18" fill="none" stroke="#176b55" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
