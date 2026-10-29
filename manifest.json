@@ -1,7 +1,7 @@
 {
-  "icon": "https://YOUR_HOSTED_DOMAIN/image.svg",
+  "icon": "https://majeedjawhar-gif.github.io/image.svg",
   "title": "Trimble Connect API Test Workbench",
-  "url": "https://YOUR_HOSTED_DOMAIN/index.html",
+  "url": "https://majeedjawhar-gif.github.io/index.html",
   "description": "Professional diagnostics for Trimble Connect Workspace API and cloud REST services.",
   "configCommand": "open_api_test_workbench",
   "extensionType": [
